@@ -1,0 +1,61 @@
+<header class="site-header" id="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="#home" data-nav aria-label="Home — <%= d.profile.name %>">
+      <span class="brand-mark" aria-hidden="true">&lt;/&gt;</span>
+      <span class="brand-name"><%= d.profile.name.split(' ')[0].toLowerCase() %><span class="brand-dot">.</span></span>
+    </a>
+
+    <nav class="main-nav" id="main-nav" aria-label="Primary">
+      <ul class="nav-list">
+        <% d.navigation.forEach(function (item) { %>
+          <li><a class="nav-link" href="#<%= item.id %>" data-nav data-section="<%= item.id %>">
+            <%- ic(item.icon) %><span><%= item.label %></span>
+          </a></li>
+        <% }); %>
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <div class="theme-switch" id="theme-switch"
+           role="radiogroup" aria-label="Colour theme — use arrow keys to switch">
+        <button class="theme-option" type="button" role="radio" data-theme-choice="light" aria-label="Light theme" tabindex="-1"><%- ic('sun') %></button>
+        <button class="theme-option" type="button" role="radio" data-theme-choice="system" aria-label="System theme" tabindex="-1"><%- ic('monitor') %></button>
+        <button class="theme-option" type="button" role="radio" data-theme-choice="dark" aria-label="Dark theme" tabindex="-1"><%- ic('moon') %></button>
+        <span class="theme-thumb" aria-hidden="true"></span>
+      </div>
+
+      <button class="btn btn-ghost palette-trigger" type="button" id="palette-trigger"
+              aria-label="Open command palette (Ctrl+K)" aria-haspopup="dialog">
+        <%- ic('search') %><span class="hide-sm">Search</span>
+        <kbd class="kbd hide-sm" aria-hidden="true">Ctrl K</kbd>
+      </button>
+
+      <button class="btn btn-ghost menu-toggle" id="menu-toggle" type="button"
+              aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
+        <%- ic('menu') %>
+      </button>
+    </div>
+  </div>
+
+  <%# Mobile navigation %>
+  <div class="mobile-nav" id="mobile-nav" hidden>
+    <nav aria-label="Mobile">
+      <ul class="mobile-nav-list">
+        <% d.navigation.forEach(function (item) { %>
+          <li><a class="mobile-nav-link" href="#<%= item.id %>" data-nav>
+            <%- ic(item.icon) %><span><%= item.label %></span><%- ic('chevron-right', 'chev') %>
+          </a></li>
+        <% }); %>
+      </ul>
+      <div class="mobile-nav-foot">
+        <% if (d.profile.socials.github) { %>
+          <a class="btn btn-ghost" href="<%= d.profile.socials.github %>" target="_blank" rel="noopener noreferrer"><%- ic('github') %> GitHub</a>
+        <% } %>
+        <% if (d.profile.socials.linkedin) { %>
+          <a class="btn btn-ghost" href="<%= d.profile.socials.linkedin %>" target="_blank" rel="noopener noreferrer"><%- ic('linkedin') %> LinkedIn</a>
+        <% } %>
+        <button class="btn btn-ghost" type="button" id="mobile-resume" data-resume><%- ic('file-text') %> Resume</button>
+      </div>
+    </nav>
+  </div>
+</header>

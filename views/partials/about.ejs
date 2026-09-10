@@ -1,0 +1,58 @@
+<section class="section" id="about" aria-labelledby="about-title">
+  <div class="container">
+    <header class="section-head reveal">
+      <p class="kicker"><span class="kicker-num">01</span> About</p>
+      <h2 class="section-title" id="about-title">Building complete products, end to end</h2>
+    </header>
+
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <% d.profile.about.forEach(function (p) { %>
+          <p><%= p %></p>
+        <% }); %>
+
+        <div class="about-stack-note reveal">
+          <div class="note-head"><%- ic('terminal') %> How this site is built</div>
+          <p>
+            This portfolio is itself a working example: a <strong>Node.js + Express</strong> backend
+            with a <strong>SQLite</strong> database (guestbook, contact inbox, visitor counter),
+            server-rendered with <strong>EJS</strong>, proxied GitHub/Dev.to APIs with server-side
+            caching, and a zero-build vanilla JS frontend. No frameworks were needed — so none were added.
+          </p>
+          <div class="note-chips">
+            <span class="chip chip-soft">Node.js</span>
+            <span class="chip chip-soft">Express 5</span>
+            <span class="chip chip-soft">EJS</span>
+            <span class="chip chip-soft">SQLite</span>
+            <span class="chip chip-soft">Vanilla JS</span>
+            <span class="chip chip-soft">CSP + Helmet</span>
+          </div>
+        </div>
+      </div>
+
+      <aside class="about-side reveal" aria-label="Quick facts">
+        <div class="facts-card">
+          <div class="facts-avatar" aria-hidden="true">HH</div>
+          <h3 class="facts-name"><%= d.profile.fullName %></h3>
+          <p class="facts-role"><%= d.profile.role %></p>
+          <ul class="facts-list">
+            <% d.profile.facts.forEach(function (f) { %>
+              <li><span class="fact-label"><%= f.label %></span><span class="fact-value"><%= f.value %></span></li>
+            <% }); %>
+          </ul>
+          <div class="facts-socials">
+            <% if (d.profile.socials.github) { %>
+              <a class="icon-btn" href="<%= d.profile.socials.github %>" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile"><%- ic('github') %></a>
+            <% } %>
+            <% if (d.profile.socials.linkedin) { %>
+              <a class="icon-btn" href="<%= d.profile.socials.linkedin %>" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile"><%- ic('linkedin') %></a>
+            <% } %>
+            <% if (contactEmail) { %>
+              <a class="icon-btn" href="mailto:<%= contactEmail %>" aria-label="Email"><%- ic('mail') %></a>
+            <% } %>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>

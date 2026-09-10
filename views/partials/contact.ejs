@@ -1,0 +1,77 @@
+<section class="section section-alt" id="contact" aria-labelledby="contact-title">
+  <div class="container">
+    <header class="section-head reveal">
+      <p class="kicker"><span class="kicker-num">08</span> Contact</p>
+      <h2 class="section-title" id="contact-title">Let's build something</h2>
+      <p class="section-sub">
+        Open to opportunities, freelance work and interesting conversations.
+        Messages land in my inbox.
+      </p>
+    </header>
+
+    <div class="contact-grid">
+      <form class="card form reveal" id="contact-form" novalidate>
+        <div class="form-row">
+          <div class="field">
+            <label for="ct-name">Name <span class="req" aria-hidden="true">*</span></label>
+            <input id="ct-name" name="name" type="text" maxlength="80" required autocomplete="name" placeholder="Your name" />
+            <p class="field-error" id="ct-name-error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="ct-email">Email <span class="req" aria-hidden="true">*</span></label>
+            <input id="ct-email" name="email" type="email" maxlength="254" required autocomplete="email" placeholder="you@example.com" />
+            <p class="field-error" id="ct-email-error" hidden></p>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="ct-subject">Subject <span class="req" aria-hidden="true">*</span></label>
+          <input id="ct-subject" name="subject" type="text" maxlength="120" required placeholder="What's this about?" />
+          <p class="field-error" id="ct-subject-error" hidden></p>
+        </div>
+
+        <div class="field">
+          <label for="ct-message">Message <span class="req" aria-hidden="true">*</span></label>
+          <textarea id="ct-message" name="message" rows="5" maxlength="5000" required
+                    placeholder="Tell me about your project, role or idea…"></textarea>
+          <div class="field-foot">
+            <p class="field-error" id="ct-message-error" hidden></p>
+            <span class="char-count" data-for="ct-message">0 / 5000</span>
+          </div>
+        </div>
+
+        <%# Honeypot %>
+        <div class="hp-field" aria-hidden="true">
+          <label for="ct-website">Website</label>
+          <input id="ct-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <button class="btn btn-primary" type="submit" id="ct-submit">
+          <span class="btn-label"><%- ic('send') %> Send message</span>
+          <span class="btn-spinner" hidden aria-hidden="true"></span>
+        </button>
+        <p class="form-status" id="ct-status" role="status" aria-live="polite"></p>
+      </form>
+
+      <aside class="contact-side reveal">
+        <% if (contactEmail) { %>
+          <div class="card contact-card">
+            <h3 class="contact-card-title"><%- ic('mail') %> Prefer email?</h3>
+            <a class="contact-email" href="mailto:<%= contactEmail %>"><%= contactEmail %></a>
+          </div>
+        <% } %>
+        <div class="card contact-card">
+          <h3 class="contact-card-title"><%- ic('zap') %> Quick links</h3>
+          <ul class="quick-links">
+            <li><button class="quick-link" type="button" data-palette-open><%- ic('search') %> Open command palette <kbd class="kbd">Ctrl K</kbd></button></li>
+            <li><a class="quick-link" href="/resume" data-resume><%- ic('file-text') %> View résumé</a></li>
+            <% if (d.profile.socials.github) { %>
+              <li><a class="quick-link" href="<%= d.profile.socials.github %>" target="_blank" rel="noopener noreferrer"><%- ic('github') %> GitHub</a></li>
+            <% } %>
+          </ul>
+        </div>
+        <p class="contact-privacy"><%- ic('info') %> Your details are used only to reply. Nothing is shared, tracked or sold.</p>
+      </aside>
+    </div>
+  </div>
+</section>

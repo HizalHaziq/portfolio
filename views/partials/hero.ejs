@@ -1,0 +1,42 @@
+<section class="hero" id="home" aria-labelledby="hero-title">
+  <div class="hero-bg" aria-hidden="true">
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+  </div>
+
+  <div class="container hero-inner">
+    <p class="kicker reveal">Hi, my name is</p>
+    <h1 class="hero-title reveal" id="hero-title">
+      <span class="hero-name"><%= d.profile.name %>.</span>
+    </h1>
+    <p class="hero-typed reveal" aria-live="off">
+      <span class="hero-fixed">I'm a</span>
+      <span class="typed-gradient"><span id="typed" data-roles="<%= d.profile.roles.join('|') %>" data-reduced-text="<%= d.profile.role %>"><%= d.profile.role %></span><span class="type-caret" aria-hidden="true"></span></span>
+    </p>
+    <p class="hero-tagline reveal"><%= d.profile.tagline %></p>
+
+    <div class="hero-cta reveal">
+      <a class="btn btn-primary" href="#projects" data-nav><%- ic('folder') %> View my work</a>
+      <a class="btn btn-ghost" href="#contact" data-nav><%- ic('mail') %> Get in touch</a>
+      <a class="btn btn-ghost" href="/resume" data-resume><%- ic('file-text') %> Résumé</a>
+    </div>
+
+    <div class="hero-meta reveal">
+      <% d.profile.facts.forEach(function (f) { %>
+        <span class="hero-fact"><%= f.label %>: <strong><%= f.value %></strong></span>
+      <% }); %>
+      <% if (d.profile.location) { %>
+        <span class="hero-fact"><%- ic('map-pin') %> <strong><%= d.profile.location %></strong></span>
+      <% } %>
+    </div>
+
+    <div class="hero-github reveal" id="hero-github" aria-label="Live GitHub stats">
+      <span class="gh-stat"><%- ic('folder-git-2') %><span class="gh-num" data-gh="repos">—</span> repos</span>
+      <span class="gh-stat"><%- ic('star') %><span class="gh-num" data-gh="stars">—</span> stars</span>
+      <span class="gh-stat"><%- ic('users') %><span class="gh-num" data-gh="followers">—</span> followers</span>
+      <a class="gh-handle" href="<%= d.profile.socials.github %>" target="_blank" rel="noopener noreferrer">@<%= d.profile.handle %> <%- ic('arrow-up-right') %></a>
+    </div>
+  </div>
+
+  <a class="scroll-cue" href="#about" data-nav aria-label="Scroll to about section"><%- ic('chevron-right') %></a>
+</section>

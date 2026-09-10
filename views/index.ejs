@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<%- include('partials/head', { meta }) %>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <%- include('partials/icons') %>
+  <%- include('partials/header') %>
+
+  <main id="main">
+    <%- include('partials/hero') %>
+    <%- include('partials/about') %>
+    <%- include('partials/skills') %>
+    <%- include('partials/journey') %>
+    <%- include('partials/projects') %>
+    <%- include('partials/github') %>
+    <%- include('partials/blog') %>
+    <%- include('partials/guestbook') %>
+    <%- include('partials/contact') %>
+  </main>
+
+  <%- include('partials/footer') %>
+
+  <%- include('partials/palette') %>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <%# Raw output is intentional: JSON is pre-escaped (</ → \u003c/) on the server. %>
+  <script nonce="<%= locals.cspNonce %>">window.__PORTFOLIO_DATA__ = <%- clientData %>;</script>
+  <script nonce="<%= locals.cspNonce %>" type="module" src="/js/main.js"></script>
+</body>
+</html>

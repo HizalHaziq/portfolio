@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<%- include('partials/head', { meta: { page: 'resume' } }) %>
+<%
+  // Print-optimised résumé — generated from the same single source of truth.
+  const skillNames = d.skills.slice().sort((a, b) => b.level - a.level).map(s => s.name);
+%>
+<body class="resume-body">
+  <div class="resume-page">
+    <header class="resume-head">
+      <div>
+        <h1><%= d.profile.fullName %></h1>
+        <p class="resume-role"><%= d.profile.role %><% if (d.profile.location) { %> · <%= d.profile.location %><% } %></p>
+        <p class="resume-links">
+          <% if (d.profile.socials.github) { %>github.com/<%= d.profile.handle %><% } %>
+          <% if (contactEmail) { %> · <%= contactEmail %><% } %>
+        </p>
+      </div>
+      <button class="btn btn-primary print-btn" type="button" id="print-btn"><%- ic('download') %> Save as PDF</button>
+    </header>
+
+    <section class="resume-section">
+      <h2>Summary</h2>
+      <p><%= d.profile.tagline %> <%= d.profile.about[0] %></p>
+    </section>
+
+    <section class="resume-section">
+      <h2>Skills</h2>
+      <p class="resume-skills"><%= skillNames.join(' · ') %></p>
+    </section>
+
+    <section class="resume-section">
+      <h2>Projects</h2>
+      <ul class="resume-list">
+        <% d.projects.filter(p => p.featured).concat(d.projects.filter(p => !p.featured)).forEach(function (p) { %>
+          <li>
+            <div class="resume-item-head">
+              <strong><%= p.title %></strong>
+              <span class="resume-item-meta"><%= p.date.slice(0, 7).replace('-', '/') %><% if (p.demo) { %> · <%= p.demo.replace(/^https?:\/\//, '') %><% } %></span>
+            </div>
+            <p><%= p.description %></p>
+            <p class="resume-tech"><%= p.technologies.join(' · ') %></p>
+          </li>
+        <% }); %>
+      </ul>
+    </section>
+
+    <section class="resume-section">
+      <h2>Journey</h2>
+      <ul class="resume-list">
+        <% d.timeline.slice().reverse().forEach(function (t) { %>
+          <li>
+            <div class="resume-item-head">
+              <strong><%= t.title %></strong>
+              <span class="resume-item-meta"><%= t.date.slice(0, 7).replace('-', '/') %><% if (t.org) { %> · <%= t.org %><% } %></span>
+            </div>
+            <p><%= t.description %></p>
+          </li>
+        <% }); %>
+      </ul>
+    </section>
+
+    <footer class="resume-foot">
+      Generated from <%= d.profile.handle.toLowerCase() %>.com — the live, interactive version has more.
+    </footer>
+  </div>
+
+  <script nonce="<%= locals.cspNonce %>">
+    document.getElementById('print-btn').addEventListener('click', () => window.print());
+  </script>
+</body>
+</html>

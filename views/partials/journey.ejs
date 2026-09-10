@@ -1,0 +1,56 @@
+<section class="section" id="journey" aria-labelledby="journey-title">
+  <div class="container">
+    <header class="section-head reveal">
+      <p class="kicker"><span class="kicker-num">03</span> Journey</p>
+      <h2 class="section-title" id="journey-title">The road so far</h2>
+      <p class="section-sub">Projects, work and milestones — newest last, because the story builds up.</p>
+    </header>
+
+    <div class="timeline" id="timeline">
+      <div class="timeline-progress" aria-hidden="true"><span id="timeline-progress-bar"></span></div>
+      <ol class="timeline-list">
+        <% d.timeline.forEach(function (item, i) { %>
+          <li class="tl-item reveal" data-type="<%= item.type %>">
+            <div class="tl-node" aria-hidden="true">
+              <% const icons = { work: 'briefcase', education: 'graduation-cap', project: 'rocket', certification: 'award', milestone: 'sparkles' }; %>
+              <%- ic(icons[item.type] || 'sparkles') %>
+            </div>
+            <article class="tl-card">
+              <header class="tl-head">
+                <time class="tl-date" datetime="<%= item.date %>"><%= item.date.slice(0, 7).replace('-', ' / ') %></time>
+                <span class="badge badge-<%= item.type %>"><%= item.type %></span>
+              </header>
+              <h3 class="tl-title"><%= item.title %></h3>
+              <% if (item.org) { %><p class="tl-org"><%- ic('map-pin') %> <%= item.org %><% if (item.location) { %> · <%= item.location %><% } %></p><% } %>
+              <p class="tl-desc"><%= item.description %></p>
+              <% if (item.tech && item.tech.length) { %>
+                <div class="tl-tech">
+                  <% item.tech.forEach(function (t) { %><span class="chip chip-soft"><%= t %></span><% }); %>
+                </div>
+              <% } %>
+              <% if (item.achievements && item.achievements.length) { %>
+                <ul class="tl-achievements">
+                  <% item.achievements.forEach(function (a) { %><li><%- ic('check') %><%= a %></li><% }); %>
+                </ul>
+              <% } %>
+            </article>
+          </li>
+        <% }); %>
+      </ol>
+    </div>
+
+    <% if (d.certifications.length) { %>
+      <div class="certs reveal">
+        <h3 class="subsection-title"><%- ic('award') %> Certifications</h3>
+        <div class="certs-grid">
+          <% d.certifications.forEach(function (c) { %>
+            <a class="cert-card" href="<%= c.url %>" target="_blank" rel="noopener noreferrer">
+              <span class="cert-title"><%= c.title %></span>
+              <span class="cert-meta"><%= c.issuer %> · <%= c.date %></span>
+            </a>
+          <% }); %>
+        </div>
+      </div>
+    <% } %>
+  </div>
+</section>

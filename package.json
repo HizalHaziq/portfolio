@@ -1,0 +1,33 @@
+{
+  "name": "hizal-portfolio",
+  "version": "1.0.0",
+  "description": "Dynamic, production-quality developer portfolio for Hizal Hazreen Haziq — Node.js, Express, EJS, SQLite.",
+  "main": "server.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node scripts/fe-integration-test.mjs"
+  },
+  "keywords": [
+    "portfolio",
+    "express",
+    "ejs",
+    "developer-portfolio"
+  ],
+  "author": "Hizal Hazreen Haziq Bin Hizal Hazardi",
+  "license": "MIT",
+  "dependencies": {
+    "better-sqlite3": "^13.0.3",
+    "compression": "^1.8.1",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.2.1",
+    "helmet": "^8.1.0"
+  },
+  "devDependencies": {
+    "jsdom": "^30.0.1"
+  }
+}

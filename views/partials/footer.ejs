@@ -1,0 +1,43 @@
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-col footer-brand">
+      <p class="footer-quote">
+        <%- ic('quote') %>
+        <span>Designed, built and deployed by <%= d.profile.name %> — this site is the résumé.</span>
+      </p>
+      <p class="footer-visit" id="visit-counter" hidden>
+        <%- ic('eye') %> <span id="visit-total">—</span> visits · <span id="visit-today">—</span> today
+        <span class="visit-privacy">cookie-free, no tracking</span>
+      </p>
+    </div>
+
+    <nav class="footer-col" aria-label="Footer">
+      <h3 class="footer-head">Explore</h3>
+      <ul class="footer-links">
+        <% d.navigation.slice(0, 5).forEach(function (item) { %>
+          <li><a href="#<%= item.id %>" data-nav><%= item.label %></a></li>
+        <% }); %>
+        <li><a href="/resume" data-resume>Résumé</a></li>
+      </ul>
+    </nav>
+
+    <div class="footer-col">
+      <h3 class="footer-head">Elsewhere</h3>
+      <ul class="footer-links">
+        <% if (d.profile.socials.github) { %>
+          <li><a href="<%= d.profile.socials.github %>" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <% } %>
+        <% if (d.profile.socials.linkedin) { %>
+          <li><a href="<%= d.profile.socials.linkedin %>" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        <% } %>
+        <li><a href="https://github.com/<%= d.profile.handle %>/portfolio" target="_blank" rel="noopener noreferrer">Site source</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container footer-base">
+    <p>© <%= site.year %> <%= d.profile.fullName %>. All rights reserved.</p>
+    <p class="footer-stack">Node.js · Express · EJS · SQLite · zero build step</p>
+    <button class="btn btn-ghost btn-small" id="to-top" type="button"><%- ic('arrow-up') %> Top</button>
+  </div>
+</footer>

@@ -1,0 +1,30 @@
+<section class="section section-alt" id="blog" aria-labelledby="blog-title">
+  <div class="container">
+    <header class="section-head reveal">
+      <p class="kicker"><span class="kicker-num">06</span> Writing</p>
+      <h2 class="section-title" id="blog-title">Articles</h2>
+      <p class="section-sub">Published on Dev.to — pulled in live.</p>
+    </header>
+
+    <div class="blog-states">
+      <div class="empty-state" id="blog-empty" hidden>
+        <div class="empty-icon"><%- ic('book-open') %></div>
+        <h3>Nothing published yet</h3>
+        <p>I'm drafting my first posts. When they're live on Dev.to, they'll appear here automatically.</p>
+      </div>
+      <div class="empty-state" id="blog-error" hidden>
+        <div class="empty-icon"><%- ic('alert-triangle') %></div>
+        <h3>Couldn't load articles</h3>
+        <p>The feed is temporarily unavailable.</p>
+        <button class="btn btn-ghost" id="blog-retry" type="button"><%- ic('rotate-ccw') %> Try again</button>
+      </div>
+      <div class="blog-grid" id="blog-grid"><!-- filled by JS --></div>
+    </div>
+
+    <div class="blog-more reveal" id="blog-more" hidden>
+      <a class="btn btn-ghost" id="blog-more-link" href="#" target="_blank" rel="noopener noreferrer">
+        View all articles <%- ic('arrow-up-right') %>
+      </a>
+    </div>
+  </div>
+</section>

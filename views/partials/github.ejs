@@ -1,0 +1,45 @@
+<section class="section" id="github" aria-labelledby="github-title">
+  <div class="container">
+    <header class="section-head reveal">
+      <p class="kicker"><span class="kicker-num">05</span> GitHub</p>
+      <h2 class="section-title" id="github-title">Live from my GitHub</h2>
+      <p class="section-sub">
+        Fetched server-side and cached — never rate-limited, never stale-dead.
+        <span class="src-chip" id="github-source" hidden data-tip="Data source"></span>
+      </p>
+    </header>
+
+    <%# Loading skeleton (replaced by JS) %>
+    <div class="gh-loading" id="github-loading" aria-hidden="true">
+      <div class="gh-skel gh-skel-profile shimmer"></div>
+      <div class="gh-skel-row">
+        <div class="gh-skel gh-skel-card shimmer"></div>
+        <div class="gh-skel gh-skel-card shimmer"></div>
+        <div class="gh-skel gh-skel-card shimmer"></div>
+      </div>
+    </div>
+
+    <div class="gh-error empty-state" id="github-error" hidden>
+      <div class="empty-icon"><%- ic('alert-triangle') %></div>
+      <h3>GitHub is unreachable right now</h3>
+      <p id="github-error-msg">The API didn't respond. This usually passes in a minute.</p>
+      <button class="btn btn-ghost" id="github-retry" type="button"><%- ic('rotate-ccw') %> Try again</button>
+    </div>
+
+    <div class="gh-content" id="github-content" hidden>
+      <div class="gh-profile reveal" id="gh-profile"><!-- filled by JS --></div>
+
+      <h3 class="subsection-title reveal"><%- ic('folder-git-2') %> Repositories</h3>
+      <div class="gh-repos" id="gh-repos"><!-- filled by JS --></div>
+      <p class="empty-note" id="gh-repos-empty" hidden>No public repositories yet.</p>
+
+      <h3 class="subsection-title reveal"><%- ic('clock') %> Recent activity</h3>
+      <ul class="gh-activity" id="gh-activity"><!-- filled by JS --></ul>
+      <p class="empty-note" id="gh-activity-empty" hidden>No recent public activity.</p>
+
+      <a class="btn btn-ghost gh-more reveal" href="<%= d.profile.socials.github %>?tab=repositories" target="_blank" rel="noopener noreferrer">
+        View all repositories <%- ic('arrow-up-right') %>
+      </a>
+    </div>
+  </div>
+</section>

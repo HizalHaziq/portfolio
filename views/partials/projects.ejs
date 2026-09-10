@@ -1,0 +1,85 @@
+<section class="section section-alt" id="projects" aria-labelledby="projects-title">
+  <div class="container">
+    <header class="section-head reveal">
+      <p class="kicker"><span class="kicker-num">04</span> Projects</p>
+      <h2 class="section-title" id="projects-title">Things I've built</h2>
+      <p class="section-sub">Search by name, tech or category — everything updates instantly.</p>
+    </header>
+
+    <div class="projects-toolbar reveal" role="search">
+      <div class="search-wrap">
+        <%- ic('search') %>
+        <label class="visually-hidden" for="project-search">Search projects</label>
+        <input type="search" id="project-search" placeholder="Search projects, tech, keywords…"
+               autocomplete="off" spellcheck="false" />
+        <button class="search-clear" id="search-clear" type="button" aria-label="Clear search" hidden>
+          <%- ic('x') %>
+        </button>
+      </div>
+
+      <label class="visually-hidden" for="tech-filter">Filter by technology</label>
+      <select id="tech-filter" class="select">
+        <option value="">All technologies</option>
+        <% d.filterTechnologies.forEach(function (t) { %>
+          <option value="<%= t %>"><%= t %></option>
+        <% }); %>
+      </select>
+
+      <button class="btn btn-ghost" id="filters-reset" type="button" hidden>
+        <%- ic('rotate-ccw') %> Reset
+      </button>
+    </div>
+
+    <div class="chips-row reveal" id="category-chips" role="group" aria-label="Filter by category">
+      <button class="chip chip-filter is-active" type="button" data-category="all" aria-pressed="true">All</button>
+      <% const cats = [...new Set(d.projects.map(p => p.category))]; %>
+      <% cats.forEach(function (c) { %>
+        <button class="chip chip-filter" type="button" data-category="<%= c %>" aria-pressed="false">
+          <%- ic('filter') %><%= c %>
+        </button>
+      <% }); %>
+      <button class="chip chip-filter" type="button" data-category="featured" aria-pressed="false">
+        <%- ic('star') %> Featured
+      </button>
+    </div>
+
+    <div class="active-filters" id="active-filters" hidden></div>
+    <p class="result-count" id="result-count" role="status" aria-live="polite"></p>
+
+    <div class="projects-grid" id="projects-grid">
+      <% d.projects.forEach(function (p, i) { %>
+        <article class="project-card reveal <%= p.featured ? 'is-featured' : '' %>"
+                 data-title="<%= p.title.toLowerCase() %>"
+                 data-index="<%= i %>">
+          <div class="project-top">
+            <% if (p.featured) { %><span class="badge badge-featured"><%- ic('star') %> featured</span><% } %>
+            <span class="badge badge-soft"><%= p.status %></span>
+          </div>
+          <h3 class="project-title"><%= p.title %></h3>
+          <p class="project-desc"><%= p.description %></p>
+          <div class="project-tech">
+            <% p.technologies.slice(0, 5).forEach(function (t) { %><span class="chip chip-soft"><%= t %></span><% }); %>
+          </div>
+          <footer class="project-foot">
+            <time class="project-date" datetime="<%= p.date %>"><%= p.date.slice(0, 7).replace('-', ' / ') %></time>
+            <div class="project-links">
+              <% if (p.demo) { %>
+                <a class="btn btn-small btn-primary" href="<%= p.demo %>" target="_blank" rel="noopener noreferrer"><%- ic('external-link') %> Live</a>
+              <% } %>
+              <% if (p.github) { %>
+                <a class="btn btn-small btn-ghost" href="<%= p.github %>" target="_blank" rel="noopener noreferrer"><%- ic('github') %> Code</a>
+              <% } %>
+            </div>
+          </footer>
+        </article>
+      <% }); %>
+    </div>
+
+    <div class="empty-state" id="projects-empty" hidden>
+      <div class="empty-icon"><%- ic('search') %></div>
+      <h3>No projects match</h3>
+      <p>Try a different keyword or clear the filters.</p>
+      <button class="btn btn-ghost" id="projects-empty-reset" type="button"><%- ic('rotate-ccw') %> Clear filters</button>
+    </div>
+  </div>
+</section>

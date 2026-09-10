@@ -1,0 +1,71 @@
+<section class="section" id="guestbook" aria-labelledby="guestbook-title">
+  <div class="container">
+    <header class="section-head reveal">
+      <p class="kicker"><span class="kicker-num">07</span> Guestbook</p>
+      <h2 class="section-title" id="guestbook-title">Say hello</h2>
+      <p class="section-sub">
+        Leave a note — it's stored in this site's own SQLite database.
+        Names and messages only, no emails, no tracking.
+      </p>
+    </header>
+
+    <div class="guestbook-grid">
+      <form class="card form reveal" id="guestbook-form" novalidate>
+        <div class="field">
+          <label for="gb-name">Name <span class="req" aria-hidden="true">*</span></label>
+          <input id="gb-name" name="name" type="text" maxlength="40" required
+                 placeholder="Ada Lovelace" autocomplete="name" />
+          <p class="field-error" id="gb-name-error" hidden></p>
+        </div>
+
+        <div class="field">
+          <label for="gb-message">Message <span class="req" aria-hidden="true">*</span></label>
+          <textarea id="gb-message" name="message" rows="3" maxlength="280" required
+                    placeholder="Nice portfolio! …"></textarea>
+          <div class="field-foot">
+            <p class="field-error" id="gb-message-error" hidden></p>
+            <span class="char-count" data-for="gb-message">0 / 280</span>
+          </div>
+        </div>
+
+        <fieldset class="field">
+          <legend>Vibe check (optional)</legend>
+          <div class="reaction-picker" role="radiogroup" aria-label="Optional reaction">
+            <button type="button" class="chip chip-react" data-reaction="like" aria-pressed="false">👍 Like</button>
+            <button type="button" class="chip chip-react" data-reaction="love" aria-pressed="false">❤️ Love</button>
+            <button type="button" class="chip chip-react" data-reaction="celebrate" aria-pressed="false">🎉 Celebrate</button>
+          </div>
+        </fieldset>
+
+        <%# Honeypot — visually hidden, bots love filling it %>
+        <div class="hp-field" aria-hidden="true">
+          <label for="gb-website">Website</label>
+          <input id="gb-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <button class="btn btn-primary" type="submit" id="gb-submit">
+          <span class="btn-label"><%- ic('send') %> Sign the guestbook</span>
+          <span class="btn-spinner" hidden aria-hidden="true"></span>
+        </button>
+        <p class="form-status" id="gb-status" role="status" aria-live="polite"></p>
+      </form>
+
+      <div class="guestbook-entries reveal">
+        <div class="gb-loading" id="gb-loading" aria-hidden="true">
+          <div class="gb-skel shimmer"></div><div class="gb-skel shimmer"></div>
+        </div>
+        <div class="empty-state" id="gb-empty" hidden>
+          <div class="empty-icon"><%- ic('message-square') %></div>
+          <h3>No entries yet</h3>
+          <p>Be the first to sign.</p>
+        </div>
+        <div class="empty-state" id="gb-error" hidden>
+          <div class="empty-icon"><%- ic('alert-triangle') %></div>
+          <h3>Couldn't load entries</h3>
+          <button class="btn btn-ghost" id="gb-retry" type="button"><%- ic('rotate-ccw') %> Try again</button>
+        </div>
+        <ul class="gb-list" id="gb-list" aria-live="polite"></ul>
+      </div>
+    </div>
+  </div>
+</section>

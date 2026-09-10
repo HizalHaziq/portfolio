@@ -280,6 +280,14 @@ console.log('\n— visits.js');
   check('counter visible with numbers', document.getElementById('visit-counter').hidden === false && /\d/.test(document.getElementById('visit-total').textContent));
 }
 
+console.log('\n— static assets (regression: path bug served 404s)');
+{
+  for (const asset of ['/css/main.css', '/js/main.js', '/assets/favicon.svg']) {
+    const res = await realFetch(BASE + asset);
+    check(`${asset} → 200`, res.status === 200, `got ${res.status}`);
+  }
+}
+
 console.log('\n— utils.js');
 {
   check('timeAgo works', /\d/.test(utils.timeAgo(new Date(Date.now() - 7200000).toISOString())));

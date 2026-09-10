@@ -102,7 +102,7 @@ app.use((req, res, next) => {
 
 const staticOpts = { maxAge: config.env === 'production' ? '7d' : 0, etag: true };
 app.use(
-  express.static(path.join(__dirname, '..', 'public'), {
+  express.static(path.join(__dirname, 'public'), {
     ...staticOpts,
     setHeaders(res, filePath) {
       if (/\.(css|js)$/.test(filePath)) res.setHeader('Cache-Control', 'public, max-age=3600');

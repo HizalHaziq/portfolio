@@ -46,12 +46,16 @@ app.use(
           'https://dev-to-uploads.s3.amazonaws.com',
         ],
         'connect-src': ["'self'"],
-        'frame-ancestors': ["'self'", 'https://*.e2b.app'], // allow the live-preview host
+        // Preview/proxy environments embed the app from arbitrary wrapper
+        // domains; only lock framing down in production.
+        'frame-ancestors': config.env === 'production' ? ["'self'"] : ['*'],
         'upgrade-insecure-requests': config.env === 'production' ? [] : null,
       },
     },
     // Same framing policy as above; helmet's SAMEORIGIN would break the preview.
     frameguard: false,
+    // HSTS is meaningless over the preview proxy and can interfere locally.
+    strictTransportSecurity: config.env === 'production',
     crossOriginEmbedderPolicy: false,
   })
 );
